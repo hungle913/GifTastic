@@ -12,5 +12,18 @@ function displayAnimeInfo() {
     $("#results").empty()
   });
 }
+
+function renderButtons() {
+  $("#anime-buttons").empty();
+  for (var i = 0; i < animes.length; i++) {
+    var a = $("<button>");
+    a.addClass("anime");
+    a.attr("data-name", animes[i]);
+    a.text(animes[i]);
+    $("#anime-buttons").append(a);
+  }
+}
+
+
   
   });
