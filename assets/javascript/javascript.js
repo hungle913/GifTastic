@@ -24,6 +24,13 @@ function renderButtons() {
   }
 }
 
+$("#find-anime").on("click", function(event){
+  event.preventDefault();
+  var anime = $("#animeSearch").val().trim();
+  animes.push(anime);
+  renderButtons();
+});
+
 
   
   });
