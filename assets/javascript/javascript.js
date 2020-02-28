@@ -4,14 +4,14 @@ var animes = ["Naruto", "Radiant", "Haikyu", "Black Clover", "One Piece", "Food 
 
 function displayAnimeInfo() {
   var anime = $(this).attr("data-name");
-  var queryURL = "api.giphy.com/v1/gifs/search/?q=" + anime + "&api_key=Hmg2J0TCJmvg6ykc36VoNURbReycFRmz&limit=10&rating=g&rating=pg&rating=pg-13";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + anime + "&api_key=Hmg2J0TCJmvg6ykc36VoNURbReycFRmz&limit=10&rating=g&rating=pg&rating=pg-13";
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response){
     $("#results").empty()
   });
-}
+
 
 function renderButtons() {
   $("#anime-buttons").empty();
@@ -34,4 +34,6 @@ $("#find-anime").on("click", function(event){
 $(document).on("click", ".anime", displayAnimeInfo);
 renderButtons();
   
+}
+displayAnimeInfo()
   });
