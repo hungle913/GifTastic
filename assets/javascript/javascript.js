@@ -31,6 +31,7 @@ $("#find-anime").on("click", function(event){
   renderButtons();
 });
 
-
+$(document).on("click", ".anime", displayAnimeInfo);
+renderButtons();
   
   });
