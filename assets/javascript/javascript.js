@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 var animes = ["Naruto", "Radiant", "Haikyu", "Black Clover", "One Piece", "Food Wars", "Dr. Stone", "Demon Slayer", "Fire Force", "World Trigger", "Fairy Tail", "Gintama", "Overlord", "Attack on Titan", "Bleach", "Nanbaka", "Erased", "Gamers", "Given", "Hunter X Hunter"];
 
-function displayAnimeInfo() {
+
 
   function renderButtons() {
   $("#anime-buttons").empty();
@@ -24,6 +24,8 @@ function displayAnimeInfo() {
   renderButtons();
   });
 
+
+  function displayAnimeInfo() {
   $(document).on("click", ".anime", displayAnimeInfo);
 
 
@@ -56,6 +58,6 @@ function displayAnimeInfo() {
 
   });
   
-}
-displayAnimeInfo()
+ }
+  displayAnimeInfo()
   });
