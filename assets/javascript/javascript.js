@@ -36,6 +36,7 @@ $(document).ready(function(){
 
         for (var i = 0; i < 10; i++) {
           var gifDiv = $("<div>");
+          gifDiv.addClass("result")
 
           var rating = results[i].rating;
 
