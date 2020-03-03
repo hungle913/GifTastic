@@ -1,63 +1,58 @@
 $(document).ready(function(){
 
-var animes = ["Naruto", "Radiant", "Haikyu", "Black Clover", "One Piece", "Food Wars", "Dr. Stone", "Demon Slayer", "Fire Force", "World Trigger", "Fairy Tail", "Gintama", "Overlord", "Attack on Titan", "Bleach", "Nanbaka", "Erased", "Gamers", "Given", "Hunter X Hunter"];
+  var animes = ["Naruto", "Radiant", "Haikyu", "Black Clover", "One Piece", "Food Wars", "Dr. Stone", "Demon Slayer", "Fire Force", "World Trigger", "Fairy Tail", "Gintama", "Overlord", "Attack on Titan", "Bleach", "Nanbaka", "Erased", "Gamers", "Given", "Hunter X Hunter"];
 
 
 
   function renderButtons() {
-  $("#anime-buttons").empty();
-  for (var i = 0; i < animes.length; i++) {
-    var a = $("<button>");
-    a.addClass("anime");
-    a.attr("data-name", animes[i]);
-    a.text(animes[i]);
-    $("#anime-buttons").append(a);
-  }
+    $("#anime-buttons").empty();
+    for (var i = 0; i < animes.length; i++) {
+      var a = $("<button>");
+      a.addClass("anime");
+      a.attr("data-name", animes[i]);
+      a.text(animes[i]);
+      $("#anime-buttons").append(a);
+    }
   }
 
   renderButtons();
 
   $("#find-anime").on("click", function(event){
-  event.preventDefault();
-  var newAnime = $("#animeSearch").val().trim();
-  animes.push(newAnime);
-  renderButtons();
+    event.preventDefault();
+    var newAnime = $("#animeSearch").val().trim();
+    animes.push(newAnime);
+    renderButtons();
   });
 
+    $(document).on("click", ".anime", function() {
+      var anime = $(this).attr("data-name");
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + anime + "&api_key=Hmg2J0TCJmvg6ykc36VoNURbReycFRmz&limit=10&rating=g&rating=pg&rating=pg-13";
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response){
+        var results = response.data;
+        console.log(results)
 
-  function displayAnimeInfo() {
+        for (var i = 0; i < 10; i++) {
+          var gifDiv = $("<div>");
 
-    $("button").on("click", function() {
-    var anime = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + anime + "&api_key=Hmg2J0TCJmvg6ykc36VoNURbReycFRmz&limit=10&rating=g&rating=pg&rating=pg-13";
-    $.ajax({
-    url: queryURL,
-    method: "GET"
-    }).then(function(response){
-    var results = response.data;
-    console.log(results)
+          var rating = results[i].rating;
 
-    for (var i = 0; i < 10; i++) {
-      var gifDiv = $("<div>");
+          var p = $("<p>").text("Rating: " + rating);
 
-      var rating = results[i].rating;
+          var animeImage = $("<img>");
+          animeImage.attr("src", results[i].images.fixed_height.url);
 
-      var p = $("<p>").text("Rating: " + rating);
+          gifDiv.prepend(animeImage);
+          gifDiv.prepend(p);
 
-      var animeImage = $("<img>");
-      animeImage.attr("src", results[i].images.fixed_height.url);
-
-      gifDiv.prepend(animeImage);
-      gifDiv.prepend(p);
-
-      $("#results").prepend(gifDiv);
-      }
-
+          $("#results").prepend(gifDiv);
+        }
+      });
+      
     });
-    results.empty()
-  });
   
- }
-  $(document).on("click", ".anime", displayAnimeInfo);
-  displayAnimeInfo()
-  });
+
+  
+});
