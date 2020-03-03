@@ -1,0 +1,8 @@
+.result {
+    float: left;
+    margin: 10px;
+}
+
+#lookup {
+    float: right;
+}
