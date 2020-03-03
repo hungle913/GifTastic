@@ -1,14 +1,21 @@
 .result {
     float: left;
     margin: 10px;
+    clear: right;
 }
 
 #lookup {
-    float: right;
+    margin: auto;
+    width: 200px;
 }
 
 .anime {
     margin: 5px;
     background-color: turquoise;
+    font-weight: bold;
+}
+
+#searchInstruction {
+    font-size: large;
     font-weight: bold;
 }
