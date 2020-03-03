@@ -7,3 +7,8 @@
     float: right;
 }
 
+.anime {
+    margin: 5px;
+    background-color: turquoise;
+    font-weight: bold;
+}
