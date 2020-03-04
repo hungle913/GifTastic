@@ -43,20 +43,38 @@ $(document).ready(function(){
         var p = $("<p>").text("Rating: " + rating);
 
         var animeImage = $("<img>");
-        animeImage.addClass("gif");
         animeImage.attr("src", results[i].images.fixed_height_still.url);
-        animeImage.attr("animate", results[i].images.fixed_height.url);
+        animeImage.attr("animate", results[i].images.original.url);
         animeImage.attr("still", results[i].images.fixed_height_still.url);
+        animeImage.attr("state", "pause");
+        animeImage.addClass("gif");
          
         gifDiv.prepend(animeImage);
         gifDiv.prepend(p);
 
         $("#results").prepend(gifDiv);
       }
+
+      $(".gif").on("click", function() {
+        var dataState = $(this).attr("state");
+        console.log("State: " + dataState);
+    
+        if (dataState === "pause") {
+          $(this).attr("src", $(this).attr("animate"));
+          $(this).attr("state", "animate");
+        }
+        else {
+          $(this).attr("src", $(this).attr("still"));
+          $(this).attr("state", "pause")
+        }
+    
+      });
+
     });
       
   });
-  
 
-  
+
+
+
 });
