@@ -24,35 +24,38 @@ $(document).ready(function(){
     renderButtons();
   });
 
-    $(document).on("click", ".anime", function() {
-      var anime = $(this).attr("data-name");
-      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + anime + "&api_key=Hmg2J0TCJmvg6ykc36VoNURbReycFRmz&limit=10&rating=g&rating=pg&rating=pg-13";
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function(response){
-        var results = response.data;
-        console.log(results)
+  $(document).on("click", ".anime", function() {
+    var anime = $(this).attr("data-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + anime + "&api_key=Hmg2J0TCJmvg6ykc36VoNURbReycFRmz&limit=10&rating=g&rating=pg&rating=pg-13";
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response){
+      var results = response.data;
+      console.log(results)
 
-        for (var i = 0; i < 10; i++) {
-          var gifDiv = $("<div>");
-          gifDiv.addClass("result")
+      for (var i = 0; i < 10; i++) {
+        var gifDiv = $("<div>");
+        gifDiv.addClass("result")
 
-          var rating = results[i].rating;
+        var rating = results[i].rating;
 
-          var p = $("<p>").text("Rating: " + rating);
+        var p = $("<p>").text("Rating: " + rating);
 
-          var animeImage = $("<img>");
-          animeImage.attr("src", results[i].images.fixed_height.url);
+        var animeImage = $("<img>");
+        animeImage.addClass("gif");
+        animeImage.attr("src", results[i].images.fixed_height_still.url);
+        animeImage.attr("animate", results[i].images.fixed_height.url);
+        animeImage.attr("still", results[i].images.fixed_height_still.url);
+         
+        gifDiv.prepend(animeImage);
+        gifDiv.prepend(p);
 
-          gifDiv.prepend(animeImage);
-          gifDiv.prepend(p);
-
-          $("#results").prepend(gifDiv);
-        }
-      });
-      
+        $("#results").prepend(gifDiv);
+      }
     });
+      
+  });
   
 
   
