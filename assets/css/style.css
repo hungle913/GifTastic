@@ -39,3 +39,8 @@ p {
     text-transform: uppercase;
 }
 
+.gif {
+    margin: 5px;
+    border: solid red 1px;
+}
+
