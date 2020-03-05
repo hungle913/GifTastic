@@ -17,7 +17,7 @@ $(document).ready(function(){
 
   renderButtons();
 
-  $("#find-anime").on("click", function(event){
+  $(document).on("click", "#find-anime", function(event){
     event.preventDefault();
     var newAnime = $("#animeSearch").val().trim();
     animes.push(newAnime);
@@ -33,7 +33,6 @@ $(document).ready(function(){
     }).then(function(response){
       var results = response.data;
       console.log(results)
-
       for (var i = 0; i < 10; i++) {
         var gifDiv = $("<div>");
         gifDiv.addClass("result")
@@ -46,35 +45,34 @@ $(document).ready(function(){
         animeImage.attr("src", results[i].images.fixed_height_still.url);
         animeImage.attr("animate", results[i].images.original.url);
         animeImage.attr("still", results[i].images.fixed_height_still.url);
-        animeImage.attr("state", "pause");
+        animeImage.attr("state", "still");
         animeImage.addClass("gif");
          
         gifDiv.prepend(animeImage);
         gifDiv.prepend(p);
 
         $("#results").prepend(gifDiv);
-      }
 
-      $(".gif").on("click", function() {
-        var dataState = $(this).attr("state");
-        console.log("State: " + dataState);
-    
-        if (dataState === "pause") {
-          $(this).attr("src", $(this).attr("animate"));
-          $(this).attr("state", "animate");
-        }
-        else {
-          $(this).attr("src", $(this).attr("still"));
-          $(this).attr("state", "pause")
-        }
-    
-      });
+      }
 
     });
       
   });
 
+  $(document).on("click", ".gif", function() {
+    var dataState = $(this).attr("state");
+    console.log("State: " + dataState);
 
+    if (dataState === "still") {
+      $(this).attr("src", $(this).attr("animate"));
+      $(this).attr("state", "animate");
+    }
+    else {
+      $(this).attr("src", $(this).attr("still"));
+      $(this).attr("state", "still")
+    }
 
+  });
 
 });
+
