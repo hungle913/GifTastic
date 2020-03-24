@@ -6,7 +6,8 @@
 
 #lookup {
     margin: auto;
-    width: 200px;
+    width: 230px;
+    text-align: center;
 }
 
 .anime {
@@ -25,7 +26,6 @@
 #find-anime {
     background-color: turquoise;
     font-weight: bold;
-    margin-left: 65px;
 }
 
 #animeSearch {
