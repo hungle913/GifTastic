@@ -1,3 +1,8 @@
+body {
+    background-image: url("../images/Anime2.png");
+    background-position: top;
+  }
+
 .result {
     float: left;
     margin: 10px;
@@ -19,7 +24,7 @@
 #searchInstruction {
     font-size: large;
     font-weight: bold;
-    color: blue;
+    color: white;
     margin: auto;
 }
 
@@ -35,13 +40,12 @@
 p {
     text-align: center;
     font-weight: bold;
-    color: blue;
+    color: white;
     font-size: 20px;
     text-transform: uppercase;
 }
 
 .gif {
     margin: 5px;
-    border: solid red 1px;
 }
 
